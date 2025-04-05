@@ -1,0 +1,53 @@
+local lockButton = createButton ("Lock Target")
+local lockedTarget = nil  
+local isLocked = false  
+
+
+function lockOnTarget(target)
+    lockedTarget = target
+    isLocked = true
+     (e.g., adjusting camera angle)
+end
+
+
+function unlockTarget()
+    lockedTarget = nil
+    isLocked = false
+    
+
+
+lockButton:onClick(function()
+    if isLocked then
+        unlockTarget()
+    
+        local closestEnemy = findClosestEnemy() 
+            lockOnTarget(closestEnemy)
+        end
+    end
+end)
+
+ 
+function findClosestEnemy()
+    local closest = nil
+    local shortestDistance = math.huge
+    for _, enemy in ipairs(getAllEnemies()) do 
+        local distance = calculateDistance(player, enemy)  -- Calculate the distance from player to enemy
+        if distance < shortestDistance then
+            shortestDistance = distance
+            closest = enemy
+        end
+    end
+    return closest
+end
+
+
+function calculateDistance(entity1, entity2)
+    local x1, y1 = entity1:getPosition()
+    local x2, y2 = entity2:getPosition()
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end two entities
+function calculateDistance(entity1, entity2)
+    local x1, y1 = entity1:getPosition()
+    local x2, y2 = entity2:getPosition()
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end
